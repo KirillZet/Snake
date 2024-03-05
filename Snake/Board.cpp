@@ -2,25 +2,20 @@
 #include <iostream>
 #include "Snake.h"
 #include "Const.h"
-Board::Board()
-{
-
+Board::Board() {
 	this->size_y = cst::board_size_y;
 	this->size_x = cst::board_size_x;
 
 	board = new char* [this->size_y];
 
 	for (int i = 0; i < this->size_y; i++) {
-
 		board[i] = new char[this->size_x];
 	}
 
 	draw();
 
-
 	apple = Apple(board);
 	snake = Snake(this->size_x, this->size_y);
-
 
 	for (Point i : snake.Pointscoords) {
 		board[i.y][i.x] = '@';
