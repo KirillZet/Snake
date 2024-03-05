@@ -138,6 +138,9 @@
     <ClInclude Include="Board.h" />
     <ClInclude Include="Snake.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="save.out" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
