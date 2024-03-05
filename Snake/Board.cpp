@@ -49,7 +49,7 @@ void Board::output() {
 		for (int j = 0; j < size_x; j++) {
 			std::cout << board[i][j];
 		}
-		std::cout << '\n';
+		//std::cout << '\n';
 	}
 
 }
