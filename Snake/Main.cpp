@@ -35,7 +35,7 @@ void game(HANDLE consoleHandle) {
 
 	while (board.snake.live() == 1)
 	{
-		system("cls");
+		//system("cls");
 		board.output();
 		board.change();
 		Sleep(16);
