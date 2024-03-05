@@ -14,6 +14,38 @@ void init() {
 	std::cout << board_size_x << " " << board_size_y;
 
 }
+<<<<<<< HEAD
+void clear() {
+	COORD topLeft = { 0, 0 };
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO screen;
+	DWORD written;
+
+	GetConsoleScreenBufferInfo(console, &screen);
+	FillConsoleOutputCharacterA(
+		console, ' ', screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+	);
+	FillConsoleOutputAttribute(
+		console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
+		screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+	);
+	SetConsoleCursorPosition(console, topLeft);
+}
+void game(HANDLE consoleHandle) {
+	Board board;
+
+	Sleep(2000);
+
+	while (board.snake.live() == 1)
+	{
+		//system("cls");
+		board.output();
+		board.change();
+		Sleep(16);
+		SetConsoleCursorPosition(consoleHandle, { 0,0 });
+
+
+=======
 void save(int currentSize) {
 	std::string fileText = "2";
 	std::ifstream in("save.out");
@@ -34,6 +66,7 @@ void save(int currentSize) {
 	out.close();
 	if (cheakRecord) {
 		std::cout << "New Record:"<<currentSize<<'!';
+>>>>>>> feature/save_records
 	}
 }
 
