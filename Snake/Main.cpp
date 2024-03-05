@@ -31,10 +31,11 @@ void clear() {
 void game(HANDLE consoleHandle) {
     Board board;
 
-    Sleep(3000);
+    Sleep(2000);
 
     while (board.snake.live() == 1)
     {
+        system("cls");
         board.output();
         board.change();
         Sleep(16);
