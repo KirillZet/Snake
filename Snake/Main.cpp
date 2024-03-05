@@ -14,7 +14,7 @@ void init() {
 	std::cout << board_size_x << " " << board_size_y;
 
 }
-<<<<<<< HEAD
+
 void clear() {
 	COORD topLeft = { 0, 0 };
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -44,8 +44,9 @@ void game(HANDLE consoleHandle) {
 		Sleep(16);
 		SetConsoleCursorPosition(consoleHandle, { 0,0 });
 
+	}
+}
 
-=======
 void save(int currentSize) {
 	std::string fileText = "2";
 	std::ifstream in("save.out");
@@ -66,7 +67,6 @@ void save(int currentSize) {
 	out.close();
 	if (cheakRecord) {
 		std::cout << "New Record:"<<currentSize<<'!';
->>>>>>> feature/save_records
 	}
 }
 
@@ -99,4 +99,3 @@ int main()
 	game();
 	return 0;
 }
-
