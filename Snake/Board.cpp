@@ -8,24 +8,43 @@ Board::Board()
 	this->size_y = cst::board_size_y;
 	this->size_x = cst::board_size_x;
 	
-	snake = Snake( this->size_x, this->size_y );
-	apple = Apple();
-
 	board = new char* [this->size_y];
 
 	for (int i = 0; i < this->size_y; i++) {
 
 		board[i] = new char[this->size_x];
 	}
+
+	draw();
+
+
+	apple = Apple(board);
+	snake = Snake(this->size_x, this->size_y);
+
+
+	for (Point i : snake.Pointscoords) {
+		board[i.y][i.x] = '@';
+	}
+
+	board[apple.curpointapple.y][apple.curpointapple.x] = '$';
+	
+
+}
+void Board::draw() {
 	for (int i = 0; i < this->size_y; i++) {
-		for (int j = 0; j < this->size_x;j++) {
+		for (int j = 0; j < this->size_x; j++) {
 			board[i][j] = ' ';
 
 		}
 	}
-
-	board[snake.headcoord.y][snake.headcoord.x] = '@';
-	board[snake.backcoord.y][snake.backcoord.x] = '@';
+	for (int i = 0; i < this->size_y; i++) {
+		board[i][0] = '%';
+		board[i][size_x - 1] = '%';
+	}
+	for (int i = 0; i < this->size_x; i++) {
+		board[0][i] = '%';
+		board[size_y - 1][i] = '%';
+	}
 
 }
 
@@ -43,17 +62,13 @@ void Board::output() {
 
 void Board::change() {
 	
+	draw();
+	snake.move(apple.curpointapple);
+
+	apple.spawn(snake.eat(apple.curpointapple), board);
 	
-	if (/*snake.eat(apple.curpointapple) == 0*/1) {
-		board[snake.backcoord.y][snake.backcoord.x] = ' ';
+	for (Point i : snake.Pointscoords) {
+		board[i.y][i.x] = '@';
 	}
-	else {
-		board[snake.backcoord.y][snake.backcoord.x] = '@';
-	}
-	snake.move();
-
-	board[snake.headcoord.y][snake.headcoord.x] = '@';
-
-
-
+	board[apple.curpointapple.y][apple.curpointapple.x] = '$';
 }

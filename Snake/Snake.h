@@ -1,7 +1,8 @@
 #pragma once
 #include "Const.h"
-#include <vector>
+#include <list>
 #include <conio.h>
+
 
 class Snake
 {
@@ -10,24 +11,22 @@ public:
 
 	Snake(int,int);
 
-	void move();
+	void move(Point);
 
-	void changesnakecoord();
+	void changesnakecoord(Point);
 
 	int eat(Point);
 
 
-
+	int live();
 	
 
 	unsigned int size = 2;
 
 	int direction = 1;
 
-	std::vector<Point> Pointscoords;
+	std::list<Point> Pointscoords;
 
-	Point headcoord{};
-
-	Point backcoord{};
+	
 
 };

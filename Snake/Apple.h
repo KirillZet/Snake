@@ -5,6 +5,8 @@
 
 class Apple {
 public:
+	Apple(char** board);
+
 	Apple();
 
 	void spawn(int, char**);
@@ -12,7 +14,7 @@ public:
 
 	void randompoint(char**);
 
-	Point lastpointapple{};
+	Point lastpointapple{-5,-5};
 
 	Point curpointapple{};
 

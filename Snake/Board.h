@@ -6,8 +6,10 @@ static class Board
 {
 	public:
 		Board();
+		void draw();
 		void output();
 		void change();
+
 
 		int size_y;
 		int size_x;

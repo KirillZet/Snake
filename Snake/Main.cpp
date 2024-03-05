@@ -12,25 +12,56 @@ void init() {
     std::cout << board_size_x << " " << board_size_y;
 
 }
-int main()
-{
-    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+void clear() {
+    COORD topLeft = { 0, 0 };
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO screen;
+    DWORD written;
 
-   bool gamegoing = 1;
-
+    GetConsoleScreenBufferInfo(console, &screen);
+    FillConsoleOutputCharacterA(
+        console, ' ', screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+    );
+    FillConsoleOutputAttribute(
+        console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
+        screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+    );
+    SetConsoleCursorPosition(console, topLeft);
+}
+void game(HANDLE consoleHandle) {
     Board board;
-    
-    
-   while (gamegoing == 1)
+
+    Sleep(1600);
+
+    while (board.snake.live() == 1)
     {
         board.output();
         board.change();
         Sleep(16);
-        SetConsoleCursorPosition(consoleHandle, {0,0});
+        SetConsoleCursorPosition(consoleHandle, { 0,0 });
 
 
     }
-   
+}
+
+int main()
+{
+
+    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO structCursorInfo;
+    GetConsoleCursorInfo(consoleHandle, &structCursorInfo);
+    structCursorInfo.bVisible = FALSE;
+    SetConsoleCursorInfo(consoleHandle, &structCursorInfo);
+    
+    while (1) {
+        game(consoleHandle);
+
+        std::cout << "Вы проиграли!";
+
+
+    }
+
+
     
 }
 

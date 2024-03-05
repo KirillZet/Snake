@@ -1,59 +1,66 @@
 #include "Snake.h"
 #include <iostream>
 
+
+
 Snake::Snake(int x, int y)
 {
-	headcoord.x = x/2;
-	headcoord.y = y/2;
-
-	backcoord.x = x / 2;
-	backcoord.y = y / 2 + 1;
-	
-	Pointscoords.push_back(headcoord);
-	Pointscoords.push_back(backcoord);
-
+	Pointscoords.push_back(Point{x/2,y/2});
+	Pointscoords.push_back(Point{ x / 2,y / 2 + 1 });
 }
 Snake::Snake()
 {
 	
 }
 
-void Snake::changesnakecoord() {
+void Snake::changesnakecoord(Point applecoords) {
 	switch (direction) {
 	case 0:
-		headcoord.x -= 1;
-		backcoord.x -= 1;
+		Pointscoords.push_front(Point{ Pointscoords.front().x - 1,Pointscoords.front().y });
 		break;
 	case 1:
-		headcoord.y -= 1;
-		backcoord.y -= 1;
+		Pointscoords.push_front(Point{ Pointscoords.front().x,Pointscoords.front().y-1 });
 		break;
 	case 2:
-		headcoord.x += 1;
-		backcoord.x += 1;
+		Pointscoords.push_front(Point{ Pointscoords.front().x+1,Pointscoords.front().y});
 		break;
 	case 3:
-		headcoord.y += 1;
-		backcoord.y += 1;
+		Pointscoords.push_front(Point{ Pointscoords.front().x,Pointscoords.front().y + 1});
 		break;
 	}
+	if (eat(applecoords)==0){ Pointscoords.pop_back(); }
+}
+
+int Snake::live()
+{
+	int c = 0;
+	std::list<Point> CopyPoints;
+	for (Point i : Pointscoords) {
+		if ((Pointscoords.front().x == i.x && Pointscoords.front().y == i.y && c!=0) ) {
+			return 0;
+		}
+		c += 1;
+	}
+	if ((Pointscoords.front().x == 0) || (Pointscoords.front().x == cst::board_size_x - 1) || (Pointscoords.front().y == cst::board_size_y - 1) || (Pointscoords.front().y == 0))
+	{
+		return 0;
+	}
+	return 1;
 }
 
 
-
-
-void Snake::move()
+void Snake::move(Point applecoords)
 {
 	
 
-	if (/*_kbhit()*/1) {
-		if (/*_getch() == 224*/1) {
+	if (_kbhit()) {
+		if (_getch() == 224) {
 
 			const int left = 75;
 			const int up = 72;
 			const int right = 77;
 			const int down = 80;
-			switch (/*_getch()*/75) {
+			switch (_getch()) {
 			case left:
 				direction = 0;
 				break;
@@ -68,16 +75,17 @@ void Snake::move()
 				break;
 
 			}
-			changesnakecoord();
+			changesnakecoord(applecoords);
 		}
 	}
 	else {
-		changesnakecoord();
-	}
+		changesnakecoord(applecoords);
+	} 
+
 }
 
 int Snake::eat(Point applecoords) {
-	if (headcoord.x==applecoords.x && headcoord.y == applecoords.y)
+	if (Pointscoords.front().x ==applecoords.x && Pointscoords.front().y == applecoords.y)
 	{
 		return 1;
 	}
