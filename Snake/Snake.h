@@ -9,7 +9,7 @@ class Snake
 public:
 	Snake();
 
-	Snake(int,int);
+	Snake(int, int);
 
 	void move(Point);
 
@@ -19,7 +19,7 @@ public:
 
 
 	int live();
-	
+
 
 	unsigned int size = 2;
 
@@ -27,6 +27,6 @@ public:
 
 	std::list<Point> Pointscoords;
 
-	
+
 
 };

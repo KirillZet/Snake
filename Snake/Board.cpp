@@ -4,10 +4,10 @@
 #include "Const.h"
 Board::Board()
 {
-	
+
 	this->size_y = cst::board_size_y;
 	this->size_x = cst::board_size_x;
-	
+
 	board = new char* [this->size_y];
 
 	for (int i = 0; i < this->size_y; i++) {
@@ -27,7 +27,7 @@ Board::Board()
 	}
 
 	board[apple.curpointapple.y][apple.curpointapple.x] = '*';
-	
+
 
 }
 void Board::draw() {
@@ -51,22 +51,22 @@ void Board::draw() {
 
 void Board::output() {
 	for (int i = 0; i < size_y; i++) {
-		for (int j = 0; j < size_x;j++) {
-			std::cout<<board[i][j];
+		for (int j = 0; j < size_x; j++) {
+			std::cout << board[i][j];
 		}
-		std::cout <<'\n';
+		std::cout << '\n';
 	}
 
 }
 
 
 void Board::change() {
-	
+
 	draw();
 	snake.move(apple.curpointapple);
 
 	apple.spawn(snake.eat(apple.curpointapple), board);
-	
+
 	for (Point i : snake.Pointscoords) {
 		board[i.y][i.x] = '@';
 	}

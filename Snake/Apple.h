@@ -14,7 +14,7 @@ public:
 
 	void randompoint(char**);
 
-	Point lastpointapple{-5,-5};
+	Point lastpointapple{ -5,-5 };
 
 	Point curpointapple{};
 
