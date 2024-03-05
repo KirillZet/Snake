@@ -26,7 +26,7 @@ Board::Board()
 		board[i.y][i.x] = '@';
 	}
 
-	board[apple.curpointapple.y][apple.curpointapple.x] = '$';
+	board[apple.curpointapple.y][apple.curpointapple.x] = '*';
 	
 
 }
@@ -70,5 +70,5 @@ void Board::change() {
 	for (Point i : snake.Pointscoords) {
 		board[i.y][i.x] = '@';
 	}
-	board[apple.curpointapple.y][apple.curpointapple.x] = '$';
+	board[apple.curpointapple.y][apple.curpointapple.x] = '*';
 }

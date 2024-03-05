@@ -31,7 +31,7 @@ void clear() {
 void game(HANDLE consoleHandle) {
     Board board;
 
-    Sleep(1600);
+    Sleep(3000);
 
     while (board.snake.live() == 1)
     {
@@ -56,8 +56,7 @@ int main()
     while (1) {
         game(consoleHandle);
 
-        std::cout << "Вы проиграли!";
-
+        std::cout << "You are lose!";
 
     }
 
